@@ -1,0 +1,12 @@
+.taginput button {
+    color: white;
+    background-color: #585858;
+    outline: none;
+    border: none;
+    margin: 5px;
+    padding: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+

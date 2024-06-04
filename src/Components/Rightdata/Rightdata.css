@@ -1,0 +1,18 @@
+
+  
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    /* Add more styles as needed */
+  }
+  
