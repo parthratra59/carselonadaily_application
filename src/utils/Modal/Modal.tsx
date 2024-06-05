@@ -20,8 +20,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   
   const [categoryid, setcategoryid] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [loading1, setLoading1] = useState(false);
-  const [loading2, setLoading2] = useState(false);
+  const [, setLoading1] = useState(false);
+  const [, setLoading2] = useState(false);
 
 
   const [tags, setTags] = useState<string[]>([]);
