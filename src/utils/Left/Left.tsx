@@ -1,4 +1,7 @@
-import Leftdata from "../../Components/Leftdata/Leftdata";
+import { lazy, Suspense } from "react";
+
+// Lazy load the Leftdata component
+const Leftdata = lazy(() => import("../../Components/Leftdata/Leftdata"));
 
 const Left = () => {
     return (
@@ -7,7 +10,9 @@ const Left = () => {
           <h1 className="text-xl font-semibold">Categories</h1>
 
             <div>
-                <Leftdata />
+            <Suspense fallback={<div>Loading...</div>}>
+            <Leftdata />
+          </Suspense>
 
             </div>
 

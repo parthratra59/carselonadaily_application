@@ -1,10 +1,16 @@
 import { useState} from "react";
 import { IoIosSearch } from "react-icons/io";
-import Modal from "../Modal/Modal";
-import Rightdata from "../../Components/Rightdata/Rightdata";
+import { lazy,Suspense } from "react";
+const Modal = lazy(() => import("../Modal/Modal"));
+const Rightdata = lazy(() => import("../../Components/Rightdata/Rightdata"));
 
 const Right = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handlechange=(e:any)=>{
+    console.log(e.target.value)
+    
+  }
 
   return (
     <>
@@ -33,6 +39,7 @@ const Right = () => {
               type="text"
               placeholder="Search"
               className="border rounded pl-10 pr-28 py-1 outline-none"
+              onChange={handlechange}
             />
             <span
               style={{
@@ -50,16 +57,20 @@ const Right = () => {
       </div>
       <div>
         <div className="mt-10 mb-6 ml-4">
-          <Rightdata />
+        <Suspense fallback={<div>Loading data...</div>}>
+            <Rightdata />
+          </Suspense>
         </div>
       </div>
-      {isModalOpen && (
-        <Modal
-          onClose={() => {
-            setIsModalOpen(false);
-          }}
-        />
-      )}
+      <Suspense fallback={<div>Loading modal...</div>}>
+        {isModalOpen && (
+          <Modal
+            onClose={() => {
+              setIsModalOpen(false);
+            }}
+          />
+        )}
+      </Suspense>
     </>
   );
 };
