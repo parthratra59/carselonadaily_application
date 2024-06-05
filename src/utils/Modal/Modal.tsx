@@ -20,7 +20,9 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   
   const [categoryid, setcategoryid] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  
+  const [loading1, setLoading1] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+
 
   const [tags, setTags] = useState<string[]>([]);
   const inputRef = useRef<HTMLDivElement>(null);
@@ -46,13 +48,19 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
   
   const getCategory = async () => {
+    setLoading1(true);
+    toast.loading("Fetching categories...")
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/users/categories");
+      const response = await axios.get("https://carselonadaily-application.onrender.com/api/v1/users/categories");
+      
       const data = response.data.data;
       console.log("dfndsfj", data)
       setcategoryid(data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    }finally {
+      toast.dismiss()
+      setLoading1(false);
     }
   };
 
@@ -69,21 +77,28 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading2(true);
+    toast.loading("Submitting your question...");
+    
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/users/createFAQ", {
+      const response = await axios.post("https://carselonadaily-application.onrender.com/api/v1/users/createFAQ", {
         questions: stepData.questions,
         shortAnswer: stepData.shortAnswer,
         longAnswer: stepData.longAnswer,
         catgory_id: stepData.catgory_id,
         tags: tags,
       });
-      const data = response.data.data;
-      console.log(data);
-      toast.success("Your question has been submitted successfully!");
+     await response.data.data;
+
+      
+     toast.success("Your question has been submitted successfully!");
       onClose();
     } catch (error) {
       console.error("Error fetching data:", error);
       toast.error("Something went wrong! Please try again later.");
+    }finally{
+      toast.dismiss()
+      setLoading2(false);
     }
     
 

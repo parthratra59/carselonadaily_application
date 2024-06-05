@@ -8,12 +8,12 @@ interface Item {
 
 const Leftdata = () => {
   const [datas, setdatas] = useState<Item[]>([]);
-  const [intervalMs] = useState(2000); 
+  const [intervalMs] = useState(10000); 
 
   const fetchingCategory = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/v1/users/categorylisting"
+        "https://carselonadaily-application.onrender.com/api/v1/users/categorylisting"
       );
       const newdata = await res.data.data;
       setdatas(newdata);

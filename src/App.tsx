@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Left from './utils/Left/Left';
 import Right from './utils/Right/Right';
 import './App.css';

@@ -24,7 +24,7 @@ const Rightdata = () => {
   const getcardData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/users/getAllFAQ"
+        "https://carselonadaily-application.onrender.com/api/v1/users/getAllFAQ"
       );
      
       const data = await response.data.data;
@@ -37,7 +37,7 @@ const Rightdata = () => {
   const getCategory = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/users/categories"
+        "https://carselonadaily-application.onrender.com/api/v1/users/categories"
       );
     
       const data = await response.data.data;
