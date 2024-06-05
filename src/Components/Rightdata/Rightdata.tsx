@@ -81,7 +81,7 @@ const Rightdata = () => {
               ))}
             </div>
           </div>
-          <hr style={{ border: "1px dashed #ccc" }} />
+          {index !== cardData.length - 1 && <hr style={{ border: "1px dashed #ccc" }} />}
         </div>
       ))}
     </div>

@@ -7,12 +7,15 @@ import "./index.css";
 const App = lazy(() => import('./App.tsx'));
 
 // Placeholder for loading state
-function Loading() {
-  return <div>Loading...</div>;
+function Spinner() {
+  return (
+    <div className="spinner">
+      <div className="spinner-inner"></div>
+    </div>
+  );
 }
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <Suspense fallback={<Loading />}>
+  <Suspense fallback={<Spinner />}>
     <Toaster />
     <App />
   </Suspense>

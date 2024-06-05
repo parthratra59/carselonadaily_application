@@ -49,7 +49,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   
   const getCategory = async () => {
     setLoading1(true);
-    toast.loading("Fetching categories...")
+    const loader =toast.loading("Fetching categories...")
     try {
       const response = await axios.get("https://carselonadaily-application.onrender.com/api/v1/users/categories");
       
@@ -59,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }finally {
-      toast.dismiss()
+      toast.dismiss(loader)
       setLoading1(false);
     }
   };
@@ -77,34 +77,28 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading2(true);
-    toast.loading("Submitting your question...");
+    const loader = toast.loading("Loading...");
     
     try {
-      const response = await axios.post("https://carselonadaily-application.onrender.com/api/v1/users/createFAQ", {
+      const response = await axios.post("http://localhost:3000/api/v1/users/createFAQ", {
         questions: stepData.questions,
         shortAnswer: stepData.shortAnswer,
         longAnswer: stepData.longAnswer,
         catgory_id: stepData.catgory_id,
         tags: tags,
       });
-     await response.data.data;
-
-      
-     toast.success("Your question has been submitted successfully!");
+      await response.data.data;
+      toast.success("Your question has been submitted successfully!");
       onClose();
     } catch (error) {
       console.error("Error fetching data:", error);
       toast.error("Something went wrong! Please try again later.");
-    }finally{
-      toast.dismiss()
+    } 
+    finally{
+      toast.dismiss(loader)
       setLoading2(false);
     }
-    
-
-
-  }
-
+  };
 
   
   return (
