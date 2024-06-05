@@ -6,7 +6,7 @@ import db from "../config/database.js"
 const categories= async(req,res)=>{
     try{
 
-        const [data] = await db.query(`SELECT * FROM Category `)
+        const [data] = await db.query(`SELECT * FROM category `)
 
         res.status(200).send({
             message: "Category listing",
