@@ -25,7 +25,7 @@ const categories= async(req,res)=>{
 const categorylisting = async(req,res)=>{
     try{
         const [data] = await db.query(`SELECT catgorynames, COUNT(*) AS question_count
-        FROM Category AS c
+        FROM category AS c
         INNER JOIN datas AS d ON c.catgoryid = d.catgory_id
         GROUP BY catgorynames`)
 
