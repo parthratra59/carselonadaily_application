@@ -80,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     const loader = toast.loading("Loading...");
     
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/users/createFAQ", {
+      const response = await axios.post("https://carselonadaily-application.onrender.com/api/v1/users/createFAQ", {
         questions: stepData.questions,
         shortAnswer: stepData.shortAnswer,
         longAnswer: stepData.longAnswer,

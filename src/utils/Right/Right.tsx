@@ -68,6 +68,7 @@ const Right: React.FC = () => {
 
   const handleItemClick = () => {
     setShowDropdown(false);
+    setValue("")
   
   };
 
