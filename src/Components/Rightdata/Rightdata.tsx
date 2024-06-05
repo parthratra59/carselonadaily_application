@@ -20,6 +20,7 @@ interface CatData {
 const Rightdata = () => {
   const [cardData, setcardData] = useState([]);
   const [categoryid, setcategoryid] = useState([]);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const getcardData = async () => {
     try {
@@ -32,6 +33,10 @@ const Rightdata = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+
+  const toggleLongAnswer = (index: number) => {
+    setExpandedIndex(prevIndex => (prevIndex === index ? null : index));
   };
 
   const getCategory = async () => {
@@ -51,15 +56,17 @@ const Rightdata = () => {
     getCategory();
   }, [cardData,categoryid]);
 
+  
+
   return (
     <div>
-      {cardData.map((item: Item, key) => {
+      {cardData.map((item: Item, index) => {
         return (
           <>
-            <div key={key} className="right-data-item mt-6">
-              <p className="mt-4 font-semibold">{item.questions}</p>
+            <div key={index} className="right-data-item mt-6">
+              <p className="mt-4 font-semibold question" onClick={() => toggleLongAnswer(index)}>{item.questions}</p>
               <div className="mt-4 text-gray-600 font-normal text-sm">
-                {item.shortAnswer}
+              {expandedIndex === index ? item.longAnswer : item.shortAnswer}
               </div>
               <div className="flex justify-between mt-6 mb-8">
                 <div className="text-sm font-semibold">
